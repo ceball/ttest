@@ -14,6 +14,8 @@ jobs:
         - DESC="test like pip-using developer"
       install: true
       script:
+        - echo $PATH
+        #
         - ls /usr/bin | grep python
         - ls /usr/bin | grep pip
         - ls /usr/bin | grep easy_install       
@@ -31,6 +33,15 @@ jobs:
         - pip3 --version
         - which easy_install3
         - easy_install3 --version
+        #
+        - echo $PYENV_VERSION
+        - which pyenv
+        - pyenv --version
+        - pyenv install 3.6
+        - export PYENV_VERSION=3.6
+        - which python
+        - python --version
+        
 
 #      before_install:
 #        - 
