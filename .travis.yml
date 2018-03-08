@@ -25,7 +25,10 @@ jobs:
         - pipenv --version
         - which easy_install
         - easy_install --version
-        # 
+        #
+        - which pyenv-virtualenv
+        - pyenv-virtualenv --version
+        #
         - python -m venv testing123
         - source testing123/bin/activate
         - which python
