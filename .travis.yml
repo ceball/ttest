@@ -16,7 +16,7 @@ jobs:
         - PYENV_VERSION=3.6
       before_install:
         - pip install tox tox-pyenv  
-        - pyenv local 3.6 2.7
+        - pyenv global 3.6 2.7
       install: true
       script: tox
 
