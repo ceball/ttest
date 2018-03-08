@@ -9,38 +9,34 @@ stages:
 jobs:
   include:
 
-    - stage: test
+    - &python_default
+      stage: test
       env:
         - DESC="test like pip-using developer"
+        - PYENV_VERSION=3.6
       install: true
       script:
         - echo $PATH
-        #
-        - ls /usr/bin | grep python
-        - ls /usr/bin | grep pip
-        - ls /usr/bin | grep easy_install       
-        #
         - which python
         - python --version
         - which pip
         - pip --version
+        - which pipenv
+        - pipenv --version
         - which easy_install
         - easy_install --version
-        #
-        - which python3
-        - python3 --version
-        - which pip3
-        - pip3 --version
-        - which easy_install3
-        - easy_install3 --version
-        #
-        - echo $PYENV_VERSION
-        - which pyenv
-        - pyenv --version
- #       - pyenv install 3.6
-        - export PYENV_VERSION=3.6
+        # 
+        - python -m venv testing123
+        - source testing123/bin/activate
         - which python
         - python --version
+        - which pip
+        - pip --version
+
+    - <<: *python_default
+      env:
+        - DESC="test like pip-using developer"
+        - PYENV_VERSION=2.7
         
 
 #      before_install:
