@@ -1,0 +1,63 @@
+language: generic
+sudo: false
+os:
+  - linux
+
+stages:
+  - test
+
+jobs:
+  include:
+
+    - stage: test
+      env:
+        - DESC="test like pip-using developer"
+      install: true
+      script:
+        - ls /usr/bin | grep python
+        - ls /usr/bin | grep pip
+        - ls /usr/bin | grep easy_install       
+        #
+        - which python
+        - python --version
+        - which pip
+        - pip --version
+        - which easy_install
+        - easy_install --version
+        #
+        - which python3
+        - python3 --version
+        - which pip3
+        - pip3 --version
+        - which easy_install3
+        - easy_install3 --version
+
+#      before_install:
+#        - 
+#        ## use system python to install doit, then use doit to install miniconda
+#        - easy_install --user doit==0.29.0 pyct && ~/.local/bin/doit install_miniconda && rm -f .doit.db
+#        - export PATH="$HOME/miniconda/bin:$PATH"
+#        ## install doit into miniconda
+#        - conda install -y -c pyviz/label/dev -c conda-forge pyct
+#        - doit ci_configure_conda
+#        
+      
+
+#    - &conda_default
+#      stage: test
+#      env:
+#        - DESC="test like conda-using developer"
+#        - PYTHON_VERSION=3.6
+#      before_install:
+#        - easy_install --user doit==0.29.0 pyct && ~/.local/bin/doit install_miniconda && rm -f .doit.db
+#        - export PATH="$HOME/miniconda/bin:$PATH"
+#        ## install doit into miniconda
+#        - conda install -y -c pyviz/label/dev -c conda-forge pyct
+#        - doit ci_configure_conda
+#      install:
+#        - doit create_env --name=test-environment --python=$PYTHON_VERSION
+#        - source activate test-environment
+#        - doit conda_develop_install --channel=pyviz/label/dev --channel=conda-forge
+#      script:
+#        - doit all_tests
+#
