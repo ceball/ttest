@@ -25,9 +25,8 @@ jobs:
         - pipenv --version
         - which easy_install
         - easy_install --version
-        #
-        - which pyenv-virtualenv
-        - pyenv-virtualenv --version
+        - which virtualenv
+        - virtualenv --version
         #
         - python -m venv testing123
         - source testing123/bin/activate
@@ -40,6 +39,9 @@ jobs:
       env:
         - DESC="test like pip-using developer"
         - PYENV_VERSION=2.7
+      before_install:
+        - pip install py2venv
+
         
 
 #      before_install:
