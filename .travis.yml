@@ -6,6 +6,10 @@ os:
 stages:
   - test
 
+env:
+  global:
+    - DOIT=doit --db-file=$HOME/extracache/.doitdb
+
 cache:
   directories:
 # seems pointless to cache the downloaded packages
@@ -13,11 +17,8 @@ cache:
 # (could try to cache a pip-created environment, but need a
 # slow-to-create pip env to test, and would require trusting some kind
 # of pip 'update' command)
-
     - $HOME/miniconda
-    
-    # by default doit stores & checks hashes rather than just checking for presence
-    - .doit.db
+    - $HOME/extracache
 
 jobs:
   include:
@@ -44,15 +45,15 @@ jobs:
         - PYENV_VERSION=3.6
       before_install:
         # install doit/pyct and use to install miniconda...
-        - pip install pyct && doit install_miniconda
+        - pip install pyct && $DOIT install_miniconda
         - export PATH="$HOME/miniconda/bin:$PATH"
         # ...and now install doit/pyct into miniconda
         - conda install -y -c pyviz/label/dev -c conda-forge pyct
-        - doit ci_configure_conda
+        - $DOIT ci_configure_conda
       install:
-        - doit create_env --name=test-environment --python=$PYENV_VERSION
+        - $DOIT create_env --name=test-environment --python=$PYENV_VERSION
         - source activate test-environment
-        - doit conda_develop_install --channel=pyviz/label/dev
+        - $DOIT conda_develop_install --channel=pyviz/label/dev
       script:
         - conda list
 
