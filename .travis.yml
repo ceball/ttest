@@ -8,7 +8,7 @@ stages:
 
 env:
   global:
-    - DOIT=doit --db-file=$HOME/extracache/.doitdb
+    - DOIT="doit --db-file=$HOME/extracache/.doitdb"
 
 cache:
   directories:
