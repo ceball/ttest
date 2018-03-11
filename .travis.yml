@@ -20,6 +20,9 @@ cache:
     - $HOME/miniconda
     - $HOME/extracache
 
+before_cache:
+  - rm -rf $HOME/miniconda/pkgs
+
 jobs:
   include:
 
