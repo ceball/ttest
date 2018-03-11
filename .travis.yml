@@ -20,7 +20,7 @@ jobs:
         - PYENV_VERSION=3.6
       before_install:
         - pip install tox py2venv
-      install: true
+      install: find $HOME/.cache/pip
       script: tox -e py${PYENV_VERSION//./}
 
     - <<: *python_default
