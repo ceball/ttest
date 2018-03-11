@@ -11,7 +11,7 @@ setup_args = dict(
     python_requires = ">= 2.7",
     install_requires = [
         'param' # just to have something
-    ]
+    ],
     extras_require = {
         # pip does not support tests_require
         'tests': tests_require
