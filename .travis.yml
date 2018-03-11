@@ -12,11 +12,11 @@ env:
 
 cache:
   directories:
-# seems pointless to cache the downloaded packages
+# default travis pip cache...but seems pointless to cache the
+# downloaded packages
 #    - $HOME/.cache/pip
-# (could try to cache a pip-created environment, but need a
-# slow-to-create pip env to test, and would require trusting some kind
-# of pip 'update' command)
+# (could instead try to cache a pip-created environment)
+
     - $HOME/miniconda
     - $HOME/extracache
 
