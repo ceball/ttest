@@ -14,10 +14,10 @@ cache:
 # slow-to-create pip env to test, and would require trusting some kind
 # of pip 'update' command)
 
-#    - $HOME/miniconda
-#    
-#    # by default doit stores & checks hashes rather than just checking for presence
-#    - .doit.db
+    - $HOME/miniconda
+    
+    # by default doit stores & checks hashes rather than just checking for presence
+    - .doit.db
 
 jobs:
   include:
