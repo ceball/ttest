@@ -6,6 +6,10 @@ os:
 stages:
   - test
 
+cache:
+  directories:
+    - $HOME/.cache/pip
+
 jobs:
   include:
 
