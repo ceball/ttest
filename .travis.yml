@@ -8,7 +8,16 @@ stages:
 
 cache:
   directories:
-    - $HOME/.cache/pip
+# seems pointless to cache the downloaded packages
+#    - $HOME/.cache/pip
+# (could try to cache a pip-created environment, but need a
+# slow-to-create pip env to test, and would require trusting some kind
+# of pip 'update' command)
+
+#    - $HOME/miniconda
+#    
+#    # by default doit stores & checks hashes rather than just checking for presence
+#    - .doit.db
 
 jobs:
   include:
@@ -20,13 +29,33 @@ jobs:
         - PYENV_VERSION=3.6
       before_install:
         - pip install tox py2venv
-      install: find $HOME/.cache/pip
+      install: true
       script: tox -e py${PYENV_VERSION//./}
 
     - <<: *python_default
       env:
         - DESC="test like pip-using developer"
         - PYENV_VERSION=2.7
+
+    - &conda_default
+      stage: test
+      env:
+        - DESC="test like conda-using developer"
+        - PYENV_VERSION=3.6
+      before_install:
+        # install doit/pyct and use to install miniconda...
+        - pip install pyct && doit install_miniconda
+        - export PATH="$HOME/miniconda/bin:$PATH"
+        # ...and now install doit/pyct into miniconda
+        - conda install -y -c pyviz/label/dev -c conda-forge pyct
+        - doit ci_configure_conda
+      install:
+        - doit create_env --name=test-environment --python=$PYENV_VERSION
+        - source activate test-environment
+        - doit conda_develop_install --channel=pyviz/label/dev
+      script:
+        - conda list
+
 
 #    - <<: *python_default
 #      env:
@@ -66,23 +95,3 @@ jobs:
 #        - conda install -y -c pyviz/label/dev -c conda-forge pyct
 #        - doit ci_configure_conda
 #        
-      
-
-#    - &conda_default
-#      stage: test
-#      env:
-#        - DESC="test like conda-using developer"
-#        - PYTHON_VERSION=3.6
-#      before_install:
-#        - easy_install --user doit==0.29.0 pyct && ~/.local/bin/doit install_miniconda && rm -f .doit.db
-#        - export PATH="$HOME/miniconda/bin:$PATH"
-#        ## install doit into miniconda
-#        - conda install -y -c pyviz/label/dev -c conda-forge pyct
-#        - doit ci_configure_conda
-#      install:
-#        - doit create_env --name=test-environment --python=$PYTHON_VERSION
-#        - source activate test-environment
-#        - doit conda_develop_install --channel=pyviz/label/dev --channel=conda-forge
-#      script:
-#        - doit all_tests
-#
