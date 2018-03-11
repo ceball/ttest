@@ -50,6 +50,7 @@ jobs:
         # install doit/pyct and use to install miniconda...
         - pip install pyct && $DOIT install_miniconda
         - export PATH="$HOME/miniconda/bin:$PATH"
+        - hash -r
 # using conda-forge results in downgrading conda, but doit not in
 # defaults (https://github.com/AnacondaRecipes/aggregate/issues/37)
         # ...and now install doit/pyct into miniconda
