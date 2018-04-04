@@ -53,7 +53,7 @@ jobs:
       stage: conda_dev_package
 
     - <<: *default
-      stage: pip_dev_package
+      stage: conda_package
 
 
 
