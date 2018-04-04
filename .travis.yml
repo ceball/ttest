@@ -3,16 +3,20 @@ sudo: false
 os:
   - linux
 
+# quick hack to determine what tag is...
+#     release: ^v(\d+|\.)*[^a-z]\d*$
+# dev release: ^v(\d+|\.)*[a-z]\d*$
+
 stages:
   - test
   - name: pip_dev_package
-    if: tag =~ "^v.*[a]$"
+    if: tag =~ "^v(\d+|\.)*[a-z]\d*$"
   - name: pip_package
-    if: tag =~ "^v.*\d$"
+    if: tag =~ "^v(\d+|\.)*[^a-z]\d*$"
   - name: conda_dev_package
-    if: (branch = master AND type != pull_request) AND (NOT tag =~ "^v.*\d$")
+    if: (branch = master AND type != pull_request) AND (NOT tag =~ "^v(\d+|\.)*[^a-z]\d*$")
   - name: conda_package
-    if: tag =~ "^v.*\d$"
+    if: tag =~ "^v(\d+|\.)*[^a-z]\d*$"
 
 #env:
 #  global:
