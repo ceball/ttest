@@ -46,7 +46,10 @@ jobs:
       stage: pip_package
       
     - <<: *default
-      stage: pip_package
+      stage: conda_dev_package
+
+    - <<: *default
+      stage: pip_dev_package
 
 
 
