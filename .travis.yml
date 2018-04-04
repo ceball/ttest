@@ -52,9 +52,10 @@ jobs:
         - export PATH="$HOME/miniconda/bin:$PATH"
         - hash -r
 # using conda-forge results in downgrading conda, but doit not in
-# defaults (https://github.com/AnacondaRecipes/aggregate/issues/37)
+# defaults (https://github.com/AnacondaRecipes/aggregate/issues/37)...
         # ...and now install doit/pyct into miniconda
 #        - conda install -y -c pyviz/label/dev -c conda-forge pyct
+        # ...so just use pip for now
         - pip install pyct
         - $DOIT ci_configure_conda
       install:
@@ -63,6 +64,11 @@ jobs:
         - $DOIT conda_develop_install --channel=pyviz/label/dev
       script:
         - conda list
+
+#    - <<: *conda_default
+#      env:
+#        - DESC="test like a conda-using developer"
+#        - PYENV_VERSION=2.7
 
 
 #    - <<: *python_default
