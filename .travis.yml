@@ -61,7 +61,7 @@ jobs:
       env: PYENV_VERSION=3.7-dev
       install:
         - which pyenv
-	- pyenv install 3.7-dev
+        - pyenv install 3.7-dev
       script:
         - which python
         - python --version
