@@ -87,7 +87,7 @@ jobs:
         - python --version
         - pyenv versions
       script:
-        - unset PYENV_VERSION
+#        - unset PYENV_VERSION
         - pyenv global 3.6 2.7	
         - which python
         - which tox
