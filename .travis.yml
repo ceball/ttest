@@ -79,7 +79,10 @@ jobs:
         - PYENV_VERSION=3.6
       before_install:
         - pip install tox #py2venv
-      install: true
+      install:
+        - pyenv versions
+        - pyenv install 2.7
+        - pyenv versions
       script: tox -e py27,py36   #py${PYENV_VERSION//./}
 
 #    - <<: *python_default
