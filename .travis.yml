@@ -80,7 +80,7 @@ jobs:
         - which python
         - python --version
         - pip install --upgrade pip
-        - pip install tox tox-pyenv # py2venv
+        - pip install tox #tox-pyenv # py2venv
       install:
         - which python
         - which tox
@@ -88,12 +88,13 @@ jobs:
         - pyenv versions
       script:
         - unset PYENV_VERSION
+        - pyenv global 3.6 2.7	
         - which python
         - which tox
         - python --version
         - tox --version
         - tox -e py27,py36   #py${PYENV_VERSION//./}
-#        - pyenv global 3.6 2.7
+
 #        - tox -e py27,py36   #py${PYENV_VERSION//./}
 #        - unset PYENV_VERSION
 #        - pyenv global 3.6 2.7
