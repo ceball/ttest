@@ -75,7 +75,7 @@ jobs:
     - &python_default
       stage: test
       env:
-        - DESC="test like pip-using developer"
+        - DESC="test like pip-using developer" PYENV_VERSION=3.6
       before_install:
         - which python
         - python --version
@@ -88,12 +88,15 @@ jobs:
       script:
         - which python2
         - which python3
-        - tox -e py27,py36   #py${PYENV_VERSION//./}
-        - pyenv global 3.6 2.7
-        - tox -e py27,py36   #py${PYENV_VERSION//./}
         - unset PYENV_VERSION
-        - pyenv global 3.6 2.7
+        - which python2
+        - which python3 
         - tox -e py27,py36   #py${PYENV_VERSION//./}
+#        - pyenv global 3.6 2.7
+#        - tox -e py27,py36   #py${PYENV_VERSION//./}
+#        - unset PYENV_VERSION
+#        - pyenv global 3.6 2.7
+#        - tox -e py27,py36   #py${PYENV_VERSION//./}
 
 
 #    - <<: *python_default
