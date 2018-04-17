@@ -76,21 +76,15 @@ jobs:
       stage: test
       env:
         - DESC="test like pip-using developer"
-#        - PYENV_VERSION=3.6
       before_install:
-        - pip install tox tox-pyenv # py2venv
+        - pip install tox #tox-pyenv # py2venv
       install:
         - which python
         - python --version
         - pyenv versions
-#
-#        - pyenv versions
-#        - which python
       script:
         - which python2
-#        - which python27
         - which python3
-#        - which python36
         - tox -e py27,py36   #py${PYENV_VERSION//./}
         - pyenv global 3.6 2.7
         - tox -e py27,py36   #py${PYENV_VERSION//./}
