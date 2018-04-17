@@ -81,9 +81,15 @@ jobs:
         - pip install tox #py2venv
       install:
         - pyenv versions
-        - pyenv install 2.7
+        - pyenv global 3.6 2.7
         - pyenv versions
-      script: tox -e py27,py36   #py${PYENV_VERSION//./}
+        - which python
+      script:
+        - which python2
+        - which python27
+        - which python3
+        - which python36
+        - tox -e py27,py36   #py${PYENV_VERSION//./}
 
 #    - <<: *python_default
 #      env:
