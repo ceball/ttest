@@ -77,6 +77,9 @@ jobs:
       env:
         - DESC="test like pip-using developer"
       before_install:
+        - which python
+        - python --version
+        - pip install --upgrade pip
         - pip install tox #tox-pyenv # py2venv
       install:
         - which python
