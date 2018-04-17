@@ -56,29 +56,31 @@ jobs:
 #      stage: conda_package
 #
 
-    - &default
-      stage: test
-      env: PYENV_VERSION=3.7-dev
-      install:
-        - which pyenv
-        - pyenv install 3.7-dev
-      script:
-        - which python
-        - python --version
+#    - &default
+#      stage: test
+#      env: PYENV_VERSION=3.6
+#      install:
+#        - which pyenv
+##        - pyenv install 3.7-dev
+#      script:
+#        - which python
+#        - python --version
+#        - 
+#
 
 #    - <<: *default
 #      env: PYENV_VERSION=3.7-dev
 
 
-#    - &python_default
-#      stage: test
-#      env:
-#        - DESC="test like pip-using developer"
-#        - PYENV_VERSION=3.6
-#      before_install:
-#        - pip install tox py2venv
-#      install: true
-#      script: tox -e py${PYENV_VERSION//./}
+    - &python_default
+      stage: test
+      env:
+        - DESC="test like pip-using developer"
+        - PYENV_VERSION=3.6
+      before_install:
+        - pip install tox #py2venv
+      install: true
+      script: tox -e py27,py36   #py${PYENV_VERSION//./}
 
 #    - <<: *python_default
 #      env:

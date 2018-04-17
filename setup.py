@@ -6,12 +6,13 @@ setup_args = dict(
     packages = find_packages(),
     python_requires = ">= 2.7",
     install_requires = [
+        'param'
         # just to have some time consuming stuff to install...
-        'bokeh',
-        'dask',
-        'numba',
-        'pandas',
-        'pillow',
+#        'bokeh',
+#        'dask',
+#        'numba',
+#        'pandas',
+#        'pillow',
     ],
     extras_require = {
         # pip does not support tests_require
