@@ -20,8 +20,15 @@ jobs:
       deploy:
         - provider: pages
           skip_cleanup: true
-          github_token: x
+          github_token: rel
           on:
             tags: true
             all_branches: true
-            condition: $TRAVIS_TAG =~ ^v(\d+|\.).*$
+            condition: $TRAVIS_TAG =~ ^v(\d+|\.)*[^a-z]\d*$
+        - provider: pages
+          skip_cleanup: true
+          github_token: dev
+          on:
+            tags: true
+            all_branches: true
+            condition: $TRAVIS_TAG =~ ^v(\d+|\.)*[a-z]\d*$
