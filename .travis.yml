@@ -31,4 +31,4 @@ jobs:
           on:
             tags: true
             all_branches: true
-            condition: $TRAVIS_TAG =~ a$
+            condition: $TRAVIS_TAG =~ [a-z]$
