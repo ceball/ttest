@@ -23,11 +23,10 @@ jobs:
     - stage: docs
       install: true
       script: true
-
-#      deploy:
-#        - provider: pages
-#          skip_cleanup: true
-#          github_token: $GITHUB_TOKEN
+      deploy:
+        - provider: pages
+          skip_cleanup: true
+          github_token: x
 #          on:
 #            tags: true
 #            all_branches: true
