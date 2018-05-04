@@ -9,18 +9,12 @@ os:
 
 stages:
   - test
-  - name: docs
-    if: tag =~ ^v(\d+|\.)
 
 jobs:
   include:
     - &python_default
       stage: test
       before_install: true
-      install: true
-      script: true
-
-    - stage: docs
       install: true
       script: true
       deploy:
