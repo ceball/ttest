@@ -16,7 +16,7 @@ jobs:
       stage: test
       before_install: true
       install: true
-      script: true
+      script: echo $TRAVIS_TAG
       deploy:
         - provider: pages
           skip_cleanup: true
