@@ -21,7 +21,7 @@ jobs:
         - provider: pages
           skip_cleanup: true
           github_token: x
-#          on:
-#            tags: true
-#            all_branches: true
+          on:
+            tags: true
+            all_branches: true
 #            condition: "$TRAVIS_TAG =~ ^v(\d+|\.).*$"
