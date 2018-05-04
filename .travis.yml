@@ -24,4 +24,4 @@ jobs:
           on:
             tags: true
             all_branches: true
-            condition: "$TRAVIS_TAG =~ ^v(\d+|\.).*$"
+            condition: $TRAVIS_TAG =~ ^v(\d+|\.).*$
