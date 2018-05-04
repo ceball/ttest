@@ -20,14 +20,14 @@ jobs:
       install: true
       script: true
 
-    - stage: docs
-      install: true
-      script: true
-      deploy:
-        - provider: pages
-          skip_cleanup: true
-          github_token: $GITHUB_TOKEN
-          on:
-            tags: true
-            all_branches: true
-            condition: "$TRAVIS_TAG =~ ^v(\d+|\.).*$"
+#    - stage: docs
+#      install: true
+#      script: true
+#      deploy:
+#        - provider: pages
+#          skip_cleanup: true
+#          github_token: $GITHUB_TOKEN
+#          on:
+#            tags: true
+#            all_branches: true
+#            condition: "$TRAVIS_TAG =~ ^v(\d+|\.).*$"
