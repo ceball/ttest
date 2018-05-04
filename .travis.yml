@@ -9,6 +9,8 @@ os:
 
 stages:
   - test
+  - name: docs
+    if: tag =~ ^v(\d+|\.)
 #  - name: pip_dev_package
 #    if: tag =~ ^v(\d+|\.)*[a-z]\d*$
 #  - name: pip_package
@@ -71,6 +73,17 @@ jobs:
 #    - <<: *default
 #      env: PYENV_VERSION=3.7-dev
 
+    - stage: docs
+      install: true
+      script: true
+      deploy:
+        - provider: pages
+          skip_cleanup: true
+          github_token: $GITHUB_TOKEN
+          on:
+            tags: true
+            all_branches: true
+            condition: "$TRAVIS_TAG =~ ^v(\d+|\.).*$"
 
     - &python_default
       stage: test
@@ -88,7 +101,7 @@ jobs:
         - pyenv versions
       script:
 #        - unset PYENV_VERSION
-        - pyenv global 3.6 2.7	
+        - pyenv global 3.6 2.7  
         - which python
         - which tox
         - python --version
