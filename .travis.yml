@@ -9,11 +9,18 @@ os:
 
 stages:
   - test
+  - name: docs
+    if: tag =~ ^v(\d+|\.).*$
 
 jobs:
   include:
     - &python_default
       stage: test
+      before_install: true
+      install: true
+      script: echo $TRAVIS_TAG
+
+    - stage: docs
       before_install: true
       install: true
       script: echo $TRAVIS_TAG
