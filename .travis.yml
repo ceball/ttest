@@ -31,4 +31,4 @@ jobs:
           on:
             tags: true
             all_branches: true
-            condition: $TRAVIS_TAG =~ ^v(\d+|\.)*[a-z]\d*$
+            condition: $TRAVIS_TAG =~ ^v(\d+|\.).*
