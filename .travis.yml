@@ -24,10 +24,11 @@ jobs:
       script: echo $THING
 
     - <<: *default
+      &more_default
       stage: more_test
       env: THING="more test"
 
-    - <<: *default
+    - <<: *more_default
       stage: more_more_test
 
     - stage: docs
