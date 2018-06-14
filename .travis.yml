@@ -9,16 +9,26 @@ os:
 
 stages:
   - test
+  - more_test
+  - more_more_test
   - name: docs
     if: tag =~ ^v(\d+|\.).*$
 
 jobs:
   include:
-    - &python_default
+    - &default
       stage: test
+      env: THING="default"
       before_install: true
       install: true
-      script: echo $TRAVIS_TAG
+      script: echo $THING
+
+    - <<: *default
+      stage: more_test
+      env: THING="more test"
+
+    - <<: *default
+      stage: more_more_test
 
     - stage: docs
       before_install: true
