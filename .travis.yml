@@ -23,8 +23,8 @@ jobs:
       install: true
       script: echo $THING
 
-    - <<: *default
-      &more_default
+    - &more_default
+      <<: *default
       stage: more_test
       env: THING="more test"
 
