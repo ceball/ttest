@@ -12,7 +12,7 @@ jobs:
       install: true
       script:
         - |-
-          echo "hello:\n  - $HOME # [osx]" > test.yaml
+          echo -e "hello:\n  - $HOME # [osx]" > test.yaml
         - cat test.yaml
         - which python
         - python --version      
