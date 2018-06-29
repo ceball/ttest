@@ -20,4 +20,14 @@ jobs:
     - <<: *default
       os: osx
       osx_image: xcode9.3
+      before_install:
+        - pyenv --version
+        - which python
+        - python --version
+        - pyenv global $PYENV_VERSION
+        - pyenv rehash
+        - which python
+        - python --version
+        - which pip
+        - pip --version
 
