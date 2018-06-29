@@ -1,9 +1,9 @@
 language: generic
 sudo: false
 
-env:
-  global:
-    - PYENV_VERSION=3.6  
+#env:
+#  global:
+#    - PYENV_VERSION=3.6  
 
 jobs:
   include:
@@ -27,10 +27,12 @@ jobs:
         - pyenv versions
         - which python
         - python --version
-        - pyenv global $PYENV_VERSION
-        - pyenv rehash
-        - which python
-        - python --version
         - which pip
         - pip --version
+ #       - pyenv global $PYENV_VERSION
+ #       - pyenv rehash
+ #       - which python
+ #       - python --version
+ #       - which pip
+ #       - pip --version
 
