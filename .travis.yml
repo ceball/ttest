@@ -29,6 +29,10 @@ jobs:
         - pyenv versions
         - pyenv install --list
         - pyenv install $PYENV_VERSION
+        - which python
+        - python --version
+        - which pip
+        - pip --version 
         - echo $PYENV_VERSION   
         - pyenv versions
         - pyenv global $PYENV_VERSION
