@@ -10,17 +10,19 @@ jobs:
     - &default
       before_install: true
       install: true
-      script:
+      script: |-
+              echo "hello:\n  - $HOME # [osx]" > test.yaml
+        - cat test.yaml
         - which python
         - python --version      
         - which pip
         - pip --version
         - pip install param
 
-    - <<: *default
-      os: osx
-      osx_image: xcode9.3
-      env: PYENV_VERSION=3.6.4
-      before_install:
-        - eval "$(pyenv init -)"
-        - pyenv install $PYENV_VERSION
+#    - <<: *default
+#      os: osx
+#      osx_image: xcode9.3
+#      env: PYENV_VERSION=3.6.4
+#      before_install:
+#        - eval "$(pyenv init -)"
+#        - pyenv install $PYENV_VERSION
