@@ -3,14 +3,15 @@ sudo: false
 
 env:
   global:
-    - PYENV_VERSION=3.6  
+    - PYENV_VERSION=3.6.4
 
 jobs:
   include:
     - &default
       before_install:
-        - pyenv --version
-        - pyenv versions
+        # following 2 lines only required for osx
+        - eval "$(pyenv init -)"
+        - pyenv install $PYENV_VERSION      
       install: true
       script:
         - which python
@@ -22,34 +23,7 @@ jobs:
     - <<: *default
       os: osx
       osx_image: xcode9.3
-      env: PYENV_VERSION=3.6.4
-      before_install:
-        - echo $PYENV_VERSION
-        - pyenv --version
-        - eval "$(pyenv init -)"
-        - pyenv versions
-        - pyenv install --list
-        - pyenv install $PYENV_VERSION
-        - which python
-        - python --version
-        - which pip
-        - pip --version 
-        - echo $PYENV_VERSION   
-        - pyenv versions
-        - pyenv global $PYENV_VERSION
-        - echo $PYENV_VERSION   
-        - which python
-        - python --version
-        - which pip
-        - pip --version
-        - export PYENV_VERSION=3.6.4
-        - pyenv versions
-        - python --version
-        - pip --version
- #       - pyenv global $PYENV_VERSION
- #       - pyenv rehash
- #       - which python
- #       - python --version
- #       - which pip
- #       - pip --version
-
+#      env: PYENV_VERSION=3.6.4
+#      before_install:
+#        - eval "$(pyenv init -)"
+#        - pyenv install $PYENV_VERSION
