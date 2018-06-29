@@ -8,7 +8,9 @@ env:
 jobs:
   include:
     - &default
-      before_install: true
+      before_install:
+        - pyenv --version
+        - pyenv versions
       install: true
       script:
         - which python
@@ -22,6 +24,7 @@ jobs:
       osx_image: xcode9.3
       before_install:
         - pyenv --version
+        - pyenv versions
         - which python
         - python --version
         - pyenv global $PYENV_VERSION
