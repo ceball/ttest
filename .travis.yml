@@ -1,9 +1,9 @@
 language: generic
 sudo: false
 
-#env:
-#  global:
-#    - PYENV_VERSION=3.6  
+env:
+  global:
+    - PYENV_VERSION=3.6  
 
 jobs:
   include:
@@ -22,11 +22,13 @@ jobs:
     - <<: *default
       os: osx
       osx_image: xcode9.3
+      env: PYENV_VERSION=3.6.4
       before_install:
         - pyenv --version
         - pyenv versions
-        - pyenv install 3.6
-        - pyenv global 3.6
+        - pyenv install --list
+        - pyenv install $PYENV_VERSION
+        - pyenv global $PYENV_VERSION
         - which python
         - python --version
         - which pip
