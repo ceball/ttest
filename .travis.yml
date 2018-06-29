@@ -18,4 +18,5 @@ jobs:
         - python --version
 
     - <<: *default
+      os: osx
       env: PIP=pip3
