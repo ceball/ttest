@@ -1,24 +1,16 @@
 language: generic
 sudo: false
 
-env:
-  global:
-    - PYENV_VERSION=3.6
+#env:
+#  global:
+#    - PYENV_VERSION=3.6
 
 jobs:
   include:
     - &default
       before_install: true
       install: true
-      script:
-        - |-
-          echo -e "hello:\n  - $HOME # [osx]" > test.yaml
-        - cat test.yaml
-        - which python
-        - python --version      
-        - which pip
-        - pip --version
-        - pip install param
+      script: true
 
 #    - <<: *default
 #      os: osx
