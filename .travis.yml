@@ -24,14 +24,22 @@ jobs:
       osx_image: xcode9.3
       env: PYENV_VERSION=3.6.4
       before_install:
+        - echo $PYENV_VERSION
         - pyenv --version
         - pyenv versions
         - pyenv install --list
         - pyenv install $PYENV_VERSION
+        - echo $PYENV_VERSION   
+        - pyenv versions
         - pyenv global $PYENV_VERSION
+        - echo $PYENV_VERSION   
         - which python
         - python --version
         - which pip
+        - pip --version
+        - export PYENV_VERSION=3.6.4
+        - pyenv versions
+        - python --version
         - pip --version
  #       - pyenv global $PYENV_VERSION
  #       - pyenv rehash
