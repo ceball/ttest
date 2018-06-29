@@ -1,52 +1,21 @@
 language: generic
 sudo: false
-os:
-  - linux
 
-# quick hack to determine what tag is...
-#     release: ^v(\d+|\.)*[^a-z]\d*$
-# dev release: ^v(\d+|\.)*[a-z]\d*$
-
-stages:
-  - test
-  - more_test
-  - more_more_test
-  - name: docs
-    if: tag =~ ^v(\d+|\.).*$
+env:
+  global:
+    - PIP=pip
 
 jobs:
   include:
     - &default
-      stage: test
-      env: THING="default"
       before_install: true
       install: true
-      script: echo $THING
+      script:
+        - which $PIP
+        - $PIP --version
+        - $PIP install param
+        - which python
+        - python --version
 
-    - &more_default
-      <<: *default
-      stage: more_test
-      env: THING="more test"
-
-    - <<: *more_default
-      stage: more_more_test
-
-    - stage: docs
-      before_install: true
-      install: true
-      script: echo $TRAVIS_TAG
-      deploy:
-        - provider: pages
-          skip_cleanup: true
-          github_token: rel
-          on:
-            tags: true
-            all_branches: true
-            condition: $TRAVIS_TAG =~ [0-9]+[^a-z][0-9]*$
-        - provider: pages
-          skip_cleanup: true
-          github_token: dev
-          on:
-            tags: true
-            all_branches: true
-            condition: $TRAVIS_TAG =~ [0-9]+[a-z][0-9]*$
+    - <<: *default
+      env: PIP=pip3
