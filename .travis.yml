@@ -14,7 +14,7 @@ stages:
   - name: more_more_test
     if: tag =~ ^v(\d+|\.)+[a-z]\d+$
   - name: docs
-    if: tag =~ ^v(\d+|\.).*$
+    if: tag =~ ^v(\d+|\.)+.*$
 
 jobs:
   include:
