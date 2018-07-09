@@ -9,9 +9,9 @@ os:
 
 stages:
   - test
-  - more_test
+  - name: more_test
     if: tag =~ ^v(\d+|\.)*[^a-z]\d+$
-  - more_more_test
+  - name: more_more_test
     if: tag =~ ^v(\d+|\.)*[a-z]\d+$
   - name: docs
     if: tag =~ ^v(\d+|\.).*$
