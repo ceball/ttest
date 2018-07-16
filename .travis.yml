@@ -16,7 +16,7 @@ stages:
   - name: docs
     if: tag =~ ^v(\d+|\.)+.*\d+$
   - name: upcoming_pain
-    if: env(TRAVIS_EVENT_TYPE) = cron
+    if: type = cron
 
 jobs:
   include:
@@ -37,6 +37,9 @@ jobs:
 
     - <<: *default
       stage: upcoming_pain
+      script:
+        - echo "hello"
+	- echo $TRAVIS_EVENT_TYPE
 
     - stage: docs
       before_install: true
