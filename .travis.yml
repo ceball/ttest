@@ -39,7 +39,7 @@ jobs:
       stage: upcoming_pain
       script:
         - echo "hello"
-	- echo $TRAVIS_EVENT_TYPE
+        - echo $TRAVIS_EVENT_TYPE
 
     - stage: docs
       before_install: true
