@@ -41,4 +41,4 @@ jobs:
           on:
             all_branches: true
             tags: true
-            condition: $TRAVIS_TAG = website
+            condition: $TRAVIS_TAG == website
