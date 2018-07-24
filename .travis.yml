@@ -8,6 +8,8 @@ _some_common_thing: &_some_common_thing
 
 stages:
   - test
+  - name: doc
+    if tag =~ ^v(\d+|\.)+[a-z]\d+$ OR tag = website
 
 jobs:
   include:
@@ -21,4 +23,20 @@ jobs:
     - &more_default
       <<: *_some_common_thing
       <<: *default
+      stage: doc
       env: THING="more test"
+      deploy:
+        - provider: pages
+          local_dir: .
+          skip_cleanup: true
+          on:
+            all_branches: true
+            tags: true
+            condition: $TRAVIS_TAG =~ [0-9]+[a-z][0-9]+$
+        - provider: pages
+          local_dir: .
+          skip_cleanup: true
+          on:
+            all_branches: true
+            tags: true
+            condition: $TRAVIS_TAG = website
