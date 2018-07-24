@@ -9,7 +9,7 @@ _some_common_thing: &_some_common_thing
 stages:
   - test
   - name: doc
-    if tag =~ ^v(\d+|\.)+[a-z]\d+$ OR tag = website
+    if (tag =~ ^v(\d+|\.)+[a-z]\d+$) OR (tag =~ ^website$)
 
 jobs:
   include:
@@ -41,4 +41,4 @@ jobs:
           on:
             all_branches: true
             tags: true
-            condition: $TRAVIS_TAG == website
+            condition: $TRAVIS_TAG = website
