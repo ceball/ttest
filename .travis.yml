@@ -27,15 +27,17 @@ jobs:
       env: THING="more test"
       deploy:
         - provider: pages
-          local_dir: .
           skip_cleanup: true
+          github_token: hello
+          local_dir: .
           on:
             all_branches: true
             tags: true
             condition: $TRAVIS_TAG =~ [0-9]+[a-z][0-9]+$
         - provider: pages
-          local_dir: .
           skip_cleanup: true
+          github_token: hello
+          local_dir: .  
           on:
             all_branches: true
             tags: true
