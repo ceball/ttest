@@ -3,60 +3,22 @@ sudo: false
 os:
   - linux
 
-# quick hack to determine what tag is...
-#     release: ^v(\d+|\.)*[^a-z]\d*$
-# dev release: ^v(\d+|\.)*[a-z]\d*$
+_some_common_thing: &_some_common_thing
+  before_install: echo "some common thing"
 
 stages:
   - test
-  - name: more_test
-    if: tag =~ ^v(\d+|\.)+[^a-z]\d+$
-  - name: more_more_test
-    if: tag =~ ^v(\d+|\.)+[a-z]\d+$
-  - name: docs
-    if: tag =~ ^v(\d+|\.)+.*\d+$
-  - name: upcoming_pain
-    if: type = cron
 
 jobs:
   include:
     - &default
+      <<: *_some_common_thing
       stage: test
       env: THING="default"
-      before_install: true
       install: true
       script: echo $THING
 
     - &more_default
+      <<: *_some_common_thing
       <<: *default
-      stage: more_test
       env: THING="more test"
-
-    - <<: *more_default
-      stage: more_more_test
-
-    - <<: *default
-      stage: upcoming_pain
-      script:
-        - echo "hello"
-        - echo $TRAVIS_EVENT_TYPE
-
-    - stage: docs
-      before_install: true
-      install: true
-      script: echo $TRAVIS_TAG
-      deploy:
-        - provider: pages
-          skip_cleanup: true
-          github_token: rel
-          on:
-            tags: true
-            all_branches: true
-            condition: $TRAVIS_TAG =~ [0-9]+[^a-z][0-9]+$
-        - provider: pages
-          skip_cleanup: true
-          github_token: dev
-          on:
-            tags: true
-            all_branches: true
-            condition: $TRAVIS_TAG =~ [0-9]+[a-z][0-9]+$
