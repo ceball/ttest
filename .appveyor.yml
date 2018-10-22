@@ -8,7 +8,7 @@ install:
   - "call %CONDA%\\Scripts\\activate.bat"
   - "conda info"
   - "conda notexistthing"
-  - "conda notexistthing &"
+  - "conda notexistthing & exit"
   - "ls not going to work"
 
 build: off
