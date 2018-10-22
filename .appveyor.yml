@@ -1,0 +1,18 @@
+environment:
+  global:
+    matrix:
+    - PY: "3.6"
+      PYTHON: "C:\\Python36-x64"
+      CONDA: "C:\\Miniconda36-x64"
+
+install:
+  - "SET PATH=%CONDA%;%CONDA%\\Scripts;%PATH%"
+  - "conda info"
+  - "conda notexistthing"
+  - "conda notexistthing &"
+  - "ls not going to work"
+
+build: off
+
+test_script:
+  - echo
