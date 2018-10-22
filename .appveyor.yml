@@ -1,6 +1,5 @@
 environment:
-  global:
-    matrix:
+  matrix:
     - PY: "3.6"
       PYTHON: "C:\\Python36-x64"
       CONDA: "C:\\Miniconda36-x64"
