@@ -5,11 +5,11 @@ environment:
       CONDA: "C:\\Miniconda36-x64"
 
 install:
-  - "set PATH=%CONDA%;%CONDA%\\scripts;%PATH%"
-#  - "call %CONDA%\\Scripts\\activate.bat"
-  - "conda info"
-  - "conda notexistthing"
-  - "conda notexistthing & exit"
+#  - "set PATH=%CONDA%;%CONDA%\\scripts;%PATH%"
+  - "call %CONDA%\\Scripts\\activate.bat"
+  - "conda.exe info"
+  - "conda.exe notexistthing"
+  - "conda.exe notexistthing & exit"
   - "ls not going to work"
   - "echo ok"
 
