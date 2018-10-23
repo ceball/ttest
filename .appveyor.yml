@@ -10,8 +10,9 @@ install:
   - "conda notexistthing"
   - "conda notexistthing & exit"
   - "ls not going to work"
+  - "echo ok"
 
 build: off
 
 test_script:
-  - echo
+  - echo ok2
