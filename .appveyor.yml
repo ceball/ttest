@@ -5,7 +5,8 @@ environment:
       CONDA: "C:\\Miniconda36-x64"
 
 install:
-  - "call %CONDA%\\Scripts\\activate.bat"
+  - "set PATH=%CONDA%;%CONDA%\\scripts;%PATH%"
+#  - "call %CONDA%\\Scripts\\activate.bat"
   - "conda info"
   - "conda notexistthing"
   - "conda notexistthing & exit"
